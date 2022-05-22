@@ -9,6 +9,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+    - cron: '0 22 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,11 +42,13 @@ jobs:
           
       - name: Touch a hello world file
         run: |
+          timestamp=$(date -u)
           touch hello.world
+          echo ${timestamp} >> hello.world
+          
           git config user.name "auto"
           git config user.email "actions@noreply.com"
           git add -A
-          timestamp=$(date -u)
           git commit -m "${timestamp}" || exit 0
           git pull --rebase
           git push
