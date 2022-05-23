@@ -47,7 +47,7 @@ jobs:
       - name: compile Lua
         run: |
           Remove-Item lua-5.4.4\src\luac.c
-          tcc\tcc.exe -o lua.exe lua-5.5.4\src\*.c
+          tcc\tcc.exe -o lua.exe lua-5.4.4\src\*.c
       - name: run lua
         run: |
           lua.exe -e "print('greetings from Lua')"
