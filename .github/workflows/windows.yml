@@ -48,7 +48,7 @@ jobs:
         run: |
           Remove-Item lua-5.4.4\src\luac.c
           tcc\tcc.exe -o lua.exe lua-5.4.4\src\*.c
-          tcc\tcc.exe -run lua-5.4.4\src\*.c -e "print('hello from Lua')"
+          dir
       - name: run lua
         run: |
           .\lua.exe -e "print('greetings from Lua')"
