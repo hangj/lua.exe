@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: windows
 
 # Controls when the workflow will run
 on:
@@ -37,6 +37,17 @@ jobs:
         run: |
           echo Hello, world!
           Invoke-WebRequest -OutFile tinycc.zip -Uri http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27-win64-bin.zip
+
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          function Unzip
+          {
+              param([string]$zipfile, [string]$outpath)
+
+              [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
+          }
+          Unzip "tinycc.zip" "tcc"
+          cd tcc
+          tcc.exe
           
 
 
