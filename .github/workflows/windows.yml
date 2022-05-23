@@ -41,7 +41,9 @@ jobs:
       - name: download Lua source
         run: |
           Invoke-WebRequest -OutFile lua54.tar.gz -Uri https://www.lua.org/ftp/lua-5.4.4.tar.gz
-          Expand-Archive -LiteralPath lua54.tar.gz -DestinationPath .\
+      - name: extract Lua source
+        run: |
+          python3 extract_tar_gz.py lua54.tar.gz
       - name: compile Lua
         run: |
           Remove-Item lua-5.4.4\src\luac.c
