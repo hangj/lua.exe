@@ -6,7 +6,6 @@ if __name__ == '__main__':
 
     assert(len(args) >= 1)
 
-    if len(args) >= 1:
-        tar = tarfile.open(args[0], "r:gz")
-        tar.extractall()
-        tar.close()
+    tar = tarfile.open(args[0], "r:gz")
+    tar.extractall()
+    tar.close()
