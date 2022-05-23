@@ -36,7 +36,7 @@ jobs:
       - name: wget tinycc
         run: |
           echo Hello, world!
-          wget http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27-win64-bin.zip
+          Invoke-WebRequest -OutFile tinycc.zip -Uri http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27-win64-bin.zip
           
 
 
