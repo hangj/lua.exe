@@ -33,13 +33,23 @@ jobs:
           python-version: "3.10"
 
       # Runs a single command using the runners shell
-      - name: wget tinycc
+      - name: download tinycc
         run: |
-          echo Hello, world!
           Invoke-WebRequest -OutFile tinycc.zip -Uri http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27-win64-bin.zip
-
           Expand-Archive -LiteralPath tinycc.zip -DestinationPath .\
-          tcc\tcc.exe
+
+      - name: download Lua source
+        run: |
+          Invoke-WebRequest -OutFile lua54.tar.gz -Uri https://www.lua.org/ftp/lua-5.4.4.tar.gz
+          Expand-Archive -LiteralPath lua54.tar.gz -DestinationPath .\
+      - name: compile Lua
+        run: |
+          Remove-Item lua-5.4.4\src\luac.c
+          tcc\tcc.exe -o lua.exe lua-5.5.5\src\*.c
+      - name: run lua
+        run: |
+          lua.exe -e "print('greetings from Lua')"
+          
           
 
 
