@@ -38,16 +38,8 @@ jobs:
           echo Hello, world!
           Invoke-WebRequest -OutFile tinycc.zip -Uri http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27-win64-bin.zip
 
-          Add-Type -AssemblyName System.IO.Compression.FileSystem
-          function Unzip
-          {
-              param([string]$zipfile, [string]$outpath)
-
-              [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
-          }
-          Unzip "tinycc.zip" "tcc"
-          cd tcc
-          tcc.exe
+          Expand-Archive -LiteralPath tinycc.zip -DestinationPath .\
+          tcc\tcc.exe
           
 
 
