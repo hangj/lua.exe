@@ -52,6 +52,14 @@ jobs:
       - name: run lua
         run: |
           .\lua.exe -e "print('greetings from Lua')"
+      - name: commit lua.exe
+        run: |
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
+          git add lua.exe
+          git commit -m "lua-5.4.4.exe"
+          git pull --rebase
+          git push
           
           
 
